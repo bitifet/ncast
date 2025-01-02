@@ -1,12 +1,23 @@
 {
   "name": "cast",
   "version": "0.0.1",
-  "description": "Dynamically multiplex stream by broadcasting over a network port",
+  "description": "Dynamic stream multiplexer by broadcasting over a network port",
   "main": "index.mjs",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [
+      "cli",
+      "console",
+      "monitor",
+      "back-end",
+      "debug",
+      "testing"
+  ],
   "author": "Joan Miquel Torres <joanmi@gmail.com>",
-  "license": "GPL-3.0"
+  "license": "GPL-3.0",
+  "dependencies": {
+    "chalk": "^5.4.1"
+  }
 }

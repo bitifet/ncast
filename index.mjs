@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import readline from 'readline';
-import {parseArgs, toStderr} from './lib/helpers.mjs';
+import {parseArgs, toStderr, showHelp} from './lib/helpers.mjs';
 import {CastClient} from "./lib/client.mjs";
 import {CastServer} from "./lib/server.mjs";
 
@@ -9,7 +9,11 @@ function main() {
 
     const {mode, ...cfg} = parseArgs(process.argv.slice(2));
 
-    if (mode === 'server') {
+    if (mode === 'help') {
+
+        showHelp();
+
+    } else if (mode === 'server') {
         const server = new CastServer(cfg);
         server.start();
 
