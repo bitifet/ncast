@@ -1,5 +1,5 @@
 {
-  "name": "cast",
+  "name": "ncast",
   "version": "0.0.1",
   "description": "Dynamic stream multiplexer by broadcasting over a network port",
   "main": "index.mjs",
@@ -16,7 +16,7 @@
       "testing"
   ],
   "author": "Joan Miquel Torres <joanmi@gmail.com>",
-  "license": "GPL-3.0",
+  "license": "MIT",
   "dependencies": {
     "chalk": "^5.4.1"
   }
