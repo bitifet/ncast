@@ -1,6 +1,6 @@
 # ncast
 
-> Dynamic stream multiplexer by broadcasting over a network port.
+Dynamic stream multiplexer by broadcasting over a network port.
 
 [![NPM Version][npm-image]][npm-url]
 [![npm dependents][depends-image]][depends-url]
@@ -9,67 +9,95 @@
 
 <!-- Hilighting fix: []() -->
 
+
+## Setup
+
+
+```sh
+$ npm install -g ncast
+```
+
+> 💡 Alternatively, you can use `npx ncast` instead of `ncast` so that you
+> don't even need to install it.
+
+
 ## Usage
 
 ```sh
-$ ncast --help
 
 NAME
-    cast — Dynamic stream multiplexer by broadcasting over a network port.
+    ncast — Dynamic stream multiplexer by broadcasting over a network port.
 
 SYNOPSIS
-    cast [modifiers...]
+    ncast [modifiers...]
 
 DESCRIPTION
     Listen to a network port (broadcast mode) and pipes standard input to every
     connected client or connect to that port (client mode) and pipes everything
     to standard output.
 
-    If port is not open or is closed by the (cast -b) server, clients persist
+    If port is not open or is closed by the (ncast -b) server, clients persist
     and reconnect as soon as server is available again. This way server process
     can be respawned as needed.
 
     The options are as follows:
 
     -b, --broadcast
-        Broadcast mode: 
+        Broadcast mode. 
 
     -p <port>, --port <port>  (Default 2549)
-        Port to listen / connect to.
+        Set network port to listen / connect to.
 
     -h <host>, --host <host>  (Default 0.0.0.0)
-        Host name or IP to listen / connect to.
+        Set host name or IP to listen / connect to.
 
     -s, --silent
-        Silent mode
+        Enable silent mode.
+
+    -v, --version
+        Show version and exit.
+
+    -h, --help
+        Show this help message and exit.
     
-EXAMPLES
-    cast -b
-        Copy standard input to standard output (like GNU cat), but listens to
-        0.0.0.0:2549. When a new client connects, start copying the output
-        to that client too. Unlimited number of clients can connect
+EXAMPLES (Broadcast mode)
+    find / 2>&1 | ncast -b > logfile.txt
+        Copy standard input (standard output and error of 'find /' command) to
+        standard output and then pipe it to 'logfile.txt'. But listens to
+        0.0.0.0:2549 and every time a new client connects, start copying the
+        output to that client too. Unlimited number of clients can connect
         concurrently.
 
-    cast -b -s
-        Like 'cast -b', but does not send anything to standard output.
+    find / | ncast -b --silent
+        Like previous example, but does not send anything to standard output.
+        Errors are locally shown (standard error is not captured).
 
-    cast
-        Connect and persist to 0.0.0.0:2549 and copy everything received to
-        standard output.
+EXAMPLES (Client mode)
+    ncast
+        Connect and persist to default host and port (0.0.0.0:2549) and copy
+        everything received to standard output.
 
-    cast | grep 'error'
-        Create another view showing only rows containing the word 'error'
+    ncast | grep '^find:'
+        Like previous example but show error messages only (since, in previous
+        broadcast mode examples, they will start by "find:")
 
-    cast --silent
+    ncast | grep -v '^find:'
+        Same logic from previous example but showing non error messages only.
+
+    ncast | grep '^/home'
+        Show only routes under /home
+
+    ncast --silent
         Does not show anything, but can be useful to monitor server
         connection/disconnection watching reports on standard error.
 
 COPYRIGHT
-    Copyright © 2025 Joan Miquel Torres Rigo.  License GPLv3+: GNU GPL version
-    3 or later <https://gnu.org/licenses/gpl.html>.
+    MIT License
+    Copyright © 2025 Joan Miquel Torres Rigo <joanmi@gmail.com>
+
     This is free software: you are free to change and redistribute it.  There
     is NO WARRANTY, to the extent permitted by law.
-       
+
 ```
 
 

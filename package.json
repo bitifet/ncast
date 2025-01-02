@@ -3,7 +3,10 @@
   "version": "0.0.1",
   "description": "Dynamic stream multiplexer by broadcasting over a network port",
   "bin": {
-      "ncast": "./index.js"
+      "ncast": "./index.mjs"
+  },
+  "engines" : {
+    "node" : ">=21.2.0"
   },
   "type": "module",
   "scripts": {
