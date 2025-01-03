@@ -1,6 +1,6 @@
 {
   "name": "ncast",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "Dynamic stream multiplexer by broadcasting over a network port",
   "bin": {
       "ncast": "./index.mjs"
