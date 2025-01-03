@@ -2,13 +2,14 @@
 
 import readline from 'readline';
 import {
-    parseArgs,
     toStderr,
-    showHelp,
     showVersion,
 } from './lib/helpers.mjs';
-import {CastClient} from "./lib/client.mjs";
-import {CastServer} from "./lib/server.mjs";
+
+import parseArgs from "./lib/argsParser.mjs";
+import showHelp from "./lib/help.mjs";
+import CastClient from "./lib/client.mjs";
+import CastServer from "./lib/server.mjs";
 
 function main() {
 
