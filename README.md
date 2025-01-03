@@ -48,7 +48,7 @@ DESCRIPTION
     -p <port>, --port <port>  (Default 2549)
         Set network port to listen / connect to.
 
-    -h <host>, --host <host>  (Default 0.0.0.0)
+    -h <host>, --host <host>  (Default localhost)
         Set host name or IP to listen / connect to.
 
     -s, --silent
@@ -64,7 +64,7 @@ EXAMPLES (Broadcast mode)
     find / 2>&1 | ncast -b > logfile.txt
         Copy standard input (standard output and error of 'find /' command) to
         standard output and then pipe it to 'logfile.txt'. But listens to
-        0.0.0.0:2549 and every time a new client connects, start copying the
+        localhost:2549 and every time a new client connects, start copying the
         output to that client too. Unlimited number of clients can connect
         concurrently.
 
@@ -72,9 +72,12 @@ EXAMPLES (Broadcast mode)
         Like previous example, but does not send anything to standard output.
         Errors are locally shown (standard error is not captured).
 
+    find / | ncast -b --host 0.0.0.0
+        Listen to all network interfaces.
+
 EXAMPLES (Client mode)
     ncast
-        Connect and persist to default host and port (0.0.0.0:2549) and copy
+        Connect and persist to default host and port (localhost:2549) and copy
         everything received to standard output.
 
     ncast | grep '^find:'
